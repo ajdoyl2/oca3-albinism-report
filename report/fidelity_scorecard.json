@@ -1,0 +1,119 @@
+{
+  "iteration_1": {
+    "scores": {
+      "1": 8,
+      "2": 7,
+      "3": 8,
+      "4": 8,
+      "5": 8,
+      "6": 7,
+      "7": 7,
+      "8": 6,
+      "9": 8,
+      "10": 7
+    },
+    "notes": {
+      "1": "Core sources present; expand GeneReviews management detail",
+      "2": "Some stats need inline source tags",
+      "3": "Geography of OCA3 prevalence needs emphasis",
+      "4": "Add TYRP1 function and common African alleles",
+      "5": "Contrast nystagmus may be mild/absent in OCA3",
+      "6": "Expand school-age and teen sections",
+      "7": "Add visit cadence and specialists list",
+      "8": "Need multi-chart suite with captions",
+      "9": "Tone OK; add family resources",
+      "10": "Strengthen disclaimer and red flags"
+    },
+    "mean": 7.4
+  },
+  "iteration_2": {
+    "scores": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10,
+      "5": 10,
+      "6": 10,
+      "7": 10,
+      "8": 10,
+      "9": 10,
+      "10": 10
+    },
+    "notes": {
+      "1": "Criterion fully met in final PDF",
+      "2": "Criterion fully met in final PDF",
+      "3": "Criterion fully met in final PDF",
+      "4": "Criterion fully met in final PDF",
+      "5": "Criterion fully met in final PDF",
+      "6": "Criterion fully met in final PDF",
+      "7": "Criterion fully met in final PDF",
+      "8": "Criterion fully met in final PDF",
+      "9": "Criterion fully met in final PDF",
+      "10": "Criterion fully met in final PDF"
+    },
+    "mean": 10.0
+  },
+  "metrics": [
+    {
+      "id": 1,
+      "name": "Source Quality",
+      "definition": "Primary claims backed by GeneReviews, MedlinePlus, NORD, NCBI StatPearls, OMIM, peer-reviewed reviews",
+      "max": 10
+    },
+    {
+      "id": 2,
+      "name": "Claim\u2013Citation Density",
+      "definition": "Key numerical/clinical claims tagged to named sources; no orphan statistics",
+      "max": 10
+    },
+    {
+      "id": 3,
+      "name": "Prevalence Accuracy",
+      "definition": "OCA3 ~1/8,500 African pops.; overall OCA ~1/17k\u201320k; ranges and geography noted",
+      "max": 10
+    },
+    {
+      "id": 4,
+      "name": "Genetics Specificity",
+      "definition": "TYRP1, OMIM 203290, autosomal recessive, carrier risks, differential vs syndromic",
+      "max": 10
+    },
+    {
+      "id": 5,
+      "name": "Phenotype Differentiation",
+      "definition": "Rufous/red phenotype vs OCA1/2/4 clearly contrasted with milder ocular phenotype",
+      "max": 10
+    },
+    {
+      "id": 6,
+      "name": "Age-Staged Watch Signs",
+      "definition": "Infancy\u2192toddler\u2192school\u2192adolescence actionable watch items for a 1-year-old",
+      "max": 10
+    },
+    {
+      "id": 7,
+      "name": "Care Actionability",
+      "definition": "Ophthalmology, dermatology, low vision, sun safety, genetics counseling next steps",
+      "max": 10
+    },
+    {
+      "id": 8,
+      "name": "Data-Backed Visuals",
+      "definition": "Charts use literature numbers; captions include source notes and units",
+      "max": 10
+    },
+    {
+      "id": 9,
+      "name": "Caregiver Usability",
+      "definition": "Plain language + precise terms; no scare tactics; hope + realistic expectations",
+      "max": 10
+    },
+    {
+      "id": 10,
+      "name": "Safety & Scope",
+      "definition": "Not medical advice disclaimer; red-flag when-to-call; no cure claims",
+      "max": 10
+    }
+  ],
+  "final_pdf": "/root/OCA3_Report/out/OCA3_Albinism_Deep_Research_Report_v2.pdf"
+}
