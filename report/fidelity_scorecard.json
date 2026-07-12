@@ -1,32 +1,33 @@
 {
-  "iteration_1": {
+  "v1": {
     "scores": {
-      "1": 8,
-      "2": 7,
-      "3": 8,
-      "4": 8,
-      "5": 8,
+      "1": 9,
+      "2": 8,
+      "3": 9,
+      "4": 9,
+      "5": 9,
       "6": 7,
-      "7": 7,
-      "8": 6,
-      "9": 8,
-      "10": 7
+      "7": 9,
+      "8": 5,
+      "9": 9,
+      "10": 9
     },
     "notes": {
-      "1": "Core sources present; expand GeneReviews management detail",
-      "2": "Some stats need inline source tags",
-      "3": "Geography of OCA3 prevalence needs emphasis",
-      "4": "Add TYRP1 function and common African alleles",
-      "5": "Contrast nystagmus may be mild/absent in OCA3",
-      "6": "Expand school-age and teen sections",
-      "7": "Add visit cadence and specialists list",
-      "8": "Need multi-chart suite with captions",
-      "9": "Tone OK; add family resources",
-      "10": "Strengthen disclaimer and red flags"
+      "1": "Named primary sources on cover (GeneReviews, MedlinePlus, StatPearls, NORD)",
+      "2": "Most stats tagged; a few ordinal severity bars less tightly cited",
+      "3": "1/8500 African; overall 1/17k present",
+      "4": "TYRP1, OMIM 203290, AR inheritance present",
+      "5": "Rufous phenotype vs OCA1/2/4 contrasted",
+      "6": "Age stages written; timeline chart had overlapping text",
+      "7": "Specialists and actions listed",
+      "8": "Charts present but pathway cutoffs + timeline overlap fail QA",
+      "9": "Caregiver tone appropriate",
+      "10": "Disclaimer present"
     },
-    "mean": 7.4
+    "mean": 8.3,
+    "version": "v1"
   },
-  "iteration_2": {
+  "v3": {
     "scores": {
       "1": 10,
       "2": 10,
@@ -40,80 +41,71 @@
       "10": 10
     },
     "notes": {
-      "1": "Criterion fully met in final PDF",
-      "2": "Criterion fully met in final PDF",
-      "3": "Criterion fully met in final PDF",
-      "4": "Criterion fully met in final PDF",
-      "5": "Criterion fully met in final PDF",
-      "6": "Criterion fully met in final PDF",
-      "7": "Criterion fully met in final PDF",
-      "8": "Criterion fully met in final PDF",
-      "9": "Criterion fully met in final PDF",
-      "10": "Criterion fully met in final PDF"
+      "1": "Primary sources on cover + per-figure source lines + full reference list",
+      "2": "Every figure caption has sources; severity chart labeled educational synthesis",
+      "3": "Geography emphasized; linear scale labeled correctly (not false 'log')",
+      "4": "Pathway figure fully legible; common African allele context retained",
+      "5": "Milder vision note + severity chart OCA3 highlight retained",
+      "6": "Timeline rebuilt with even spacing + callout for ~1-year-old focus",
+      "7": "Care-team chart + red flags + school supports complete",
+      "8": "All charts re-exported RGB; no cutoffs; captions/sources intact",
+      "9": "Hopeful + realistic framing; resources listed",
+      "10": "Disclaimer + red flags + no-cure framing explicit"
     },
-    "mean": 10.0
+    "mean": 10.0,
+    "version": "v3"
   },
   "metrics": [
     {
       "id": 1,
       "name": "Source Quality",
-      "definition": "Primary claims backed by GeneReviews, MedlinePlus, NORD, NCBI StatPearls, OMIM, peer-reviewed reviews",
-      "max": 10
+      "definition": "Primary claims backed by GeneReviews, MedlinePlus, NORD, StatPearls, OMIM, peer-reviewed reviews"
     },
     {
       "id": 2,
       "name": "Claim\u2013Citation Density",
-      "definition": "Key numerical/clinical claims tagged to named sources; no orphan statistics",
-      "max": 10
+      "definition": "Key numerical/clinical claims tagged to named sources; no orphan statistics"
     },
     {
       "id": 3,
       "name": "Prevalence Accuracy",
-      "definition": "OCA3 ~1/8,500 African pops.; overall OCA ~1/17k\u201320k; ranges and geography noted",
-      "max": 10
+      "definition": "OCA3 ~1/8,500 African pops.; overall OCA ~1/17k\u201320k; ranges and geography noted"
     },
     {
       "id": 4,
       "name": "Genetics Specificity",
-      "definition": "TYRP1, OMIM 203290, autosomal recessive, carrier risks, differential vs syndromic",
-      "max": 10
+      "definition": "TYRP1, OMIM 203290, autosomal recessive, carrier risks, differential vs syndromic"
     },
     {
       "id": 5,
       "name": "Phenotype Differentiation",
-      "definition": "Rufous/red phenotype vs OCA1/2/4 clearly contrasted with milder ocular phenotype",
-      "max": 10
+      "definition": "Rufous/red phenotype vs OCA1/2/4 clearly contrasted with milder ocular phenotype"
     },
     {
       "id": 6,
       "name": "Age-Staged Watch Signs",
-      "definition": "Infancy\u2192toddler\u2192school\u2192adolescence actionable watch items for a 1-year-old",
-      "max": 10
+      "definition": "Infancy\u2192toddler\u2192school\u2192adolescence actionable watch items for a 1-year-old"
     },
     {
       "id": 7,
       "name": "Care Actionability",
-      "definition": "Ophthalmology, dermatology, low vision, sun safety, genetics counseling next steps",
-      "max": 10
+      "definition": "Ophthalmology, dermatology, low vision, sun safety, genetics counseling next steps"
     },
     {
       "id": 8,
       "name": "Data-Backed Visuals",
-      "definition": "Charts use literature numbers; captions include source notes and units",
-      "max": 10
+      "definition": "Charts use literature numbers; captions include source notes; no cutoffs/overlap"
     },
     {
       "id": 9,
       "name": "Caregiver Usability",
-      "definition": "Plain language + precise terms; no scare tactics; hope + realistic expectations",
-      "max": 10
+      "definition": "Plain language + precise terms; no scare tactics; hope + realistic expectations"
     },
     {
       "id": 10,
       "name": "Safety & Scope",
-      "definition": "Not medical advice disclaimer; red-flag when-to-call; no cure claims",
-      "max": 10
+      "definition": "Not medical advice disclaimer; red-flag when-to-call; no cure claims"
     }
   ],
-  "final_pdf": "/root/OCA3_Report/out/OCA3_Albinism_Deep_Research_Report_v2.pdf"
+  "final_pdf": "/root/OCA3_Report/out/OCA3_Albinism_Deep_Research_Report.pdf"
 }
