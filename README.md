@@ -1,6 +1,6 @@
 # OCA3 (Oculocutaneous Albinism Type 3) — Family Research Brief
 
-**Version 3** — chart QA rebuild (timeline overlap fixed, pathway labels unclipped, fidelity scoring evidence-based).
+**Version 4** — aspect-ratio embedding fix (no stretch/squash) + v3 chart QA (timeline overlap fixed, pathway labels unclipped, fidelity scoring evidence-based).
 
 Educational deep-research PDF for families of a child diagnosed with **OCA3 (rufous/red oculocutaneous albinism)**.
 
@@ -8,7 +8,7 @@ Educational deep-research PDF for families of a child diagnosed with **OCA3 (ruf
 
 ## Download
 
-- **[Final PDF v3](report/OCA3_Albinism_Deep_Research_Report.pdf)** ← primary deliverable  
+- **[Final PDF v4](report/OCA3_Albinism_Deep_Research_Report.pdf)** ← primary deliverable  
 - Direct raw: https://github.com/ajdoyl2/oca3-albinism-report/raw/main/report/OCA3_Albinism_Deep_Research_Report.pdf
 
 ## What was fixed in v3
@@ -20,6 +20,7 @@ Educational deep-research PDF for families of a child diagnosed with **OCA3 (ruf
 | Prevalence title said “log” but was linear | Title corrected to **linear scale** |
 | RGBA charts in some PDF viewers | All figures re-exported **RGB** |
 | Fidelity “10/10” felt circular | **Evidence table** + v1→v3 before/after chart |
+| Charts **stretched/squished** in PDF | Custom FittedImage flowable; display AR = native AR |
 
 ## Fidelity
 

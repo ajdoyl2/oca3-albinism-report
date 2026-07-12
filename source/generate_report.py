@@ -23,8 +23,9 @@ from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, Image, PageBreak, Table, TableStyle,
-    HRFlowable,
+    HRFlowable, Flowable,
 )
+from reportlab.lib.utils import ImageReader
 
 BASE = Path("/root/OCA3_Report")
 CHARTS = BASE / "charts"
@@ -571,20 +572,75 @@ def footer(canvas, doc):
     canvas.line(0.7 * inch, 0.55 * inch, letter[0] - 0.7 * inch, 0.55 * inch)
     canvas.setFont("Helvetica", 7.5)
     canvas.setFillColor(colors.HexColor(MUTED))
-    canvas.drawString(0.7 * inch, 0.35 * inch, "OCA3 Family Research Brief v3 — Educational only")
+    canvas.drawString(0.7 * inch, 0.35 * inch, "OCA3 Family Research Brief v4 — Educational only")
     canvas.drawRightString(letter[0] - 0.7 * inch, 0.35 * inch, f"Page {doc.page}")
     canvas.restoreState()
 
 
-def img(path: Path, width=6.7 * inch, max_h=3.6 * inch):
-    im = Image(str(path))
-    im.drawWidth = width
-    im.drawHeight = width * (im.imageHeight / float(im.imageWidth))
-    if im.drawHeight > max_h:
-        scale = max_h / im.drawHeight
-        im.drawHeight = max_h
-        im.drawWidth = im.drawWidth * scale
-    return im
+class FittedImage(Flowable):
+    """
+    Embed a PNG/JPEG preserving true pixel aspect ratio.
+
+    ReportLab's Image flowable can mis-size large PNGs when drawWidth/drawHeight
+    are set after construction (pixel width ends up as points → extreme
+    horizontal stretch / vertical squash). This flowable sizes from PIL pixels
+    and draws with an explicit width×height transform.
+    """
+
+    def __init__(self, path, max_width=6.7 * inch, max_height=3.8 * inch, h_align="CENTER"):
+        super().__init__()
+        self.path = str(path)
+        pil = PILImage.open(path)
+        self.px_w, self.px_h = pil.size
+        if self.px_w <= 0 or self.px_h <= 0:
+            raise ValueError(f"Invalid image size for {path}: {pil.size}")
+        ar = self.px_w / float(self.px_h)
+
+        # Fit inside max box, preserve AR
+        w = float(max_width)
+        h = w / ar
+        if h > max_height:
+            h = float(max_height)
+            w = h * ar
+
+        self._target_w = w
+        self._target_h = h
+        self._draw_w = w
+        self._draw_h = h
+        self.h_align = h_align
+        # ReportLab uses these for some layout introspection
+        self.drawWidth = w
+        self.drawHeight = h
+
+    def wrap(self, availWidth, availHeight):
+        w, h = self._target_w, self._target_h
+        if w > availWidth > 0:
+            scale = availWidth / w
+            w *= scale
+            h *= scale
+        self._draw_w = w
+        self._draw_h = h
+        self.drawWidth = w
+        self.drawHeight = h
+        return w, h
+
+    def draw(self):
+        # Explicit width/height keeps native aspect ratio on the page
+        self.canv.drawImage(
+            ImageReader(self.path),
+            0,
+            0,
+            width=self._draw_w,
+            height=self._draw_h,
+            preserveAspectRatio=False,  # already fitted; don't re-letterbox
+            mask="auto",
+            anchor="sw",
+        )
+
+
+def img(path: Path, width=6.7 * inch, max_h=3.8 * inch):
+    """Return a flowable that embeds the chart without stretch/squash."""
+    return FittedImage(path, max_width=width, max_height=max_h)
 
 
 def build_pdf(chart_paths: dict, fidelity_v1: dict, fidelity_v3: dict) -> Path:
@@ -594,7 +650,7 @@ def build_pdf(chart_paths: dict, fidelity_v1: dict, fidelity_v3: dict) -> Path:
         str(out_path), pagesize=letter,
         leftMargin=0.7 * inch, rightMargin=0.7 * inch,
         topMargin=0.6 * inch, bottomMargin=0.75 * inch,
-        title="OCA3 Albinism Deep Research Report v3",
+        title="OCA3 Albinism Deep Research Report v4",
         author="Family Research Brief (literature synthesis)",
     )
     story = []
@@ -607,7 +663,7 @@ def build_pdf(chart_paths: dict, fidelity_v1: dict, fidelity_v3: dict) -> Path:
     story.append(HRFlowable(width="100%", thickness=2, color=colors.HexColor(TEAL), spaceAfter=10))
     story.append(Paragraph(
         f"<b>Prepared for:</b> Family of a 1-year-old child with an OCA3 diagnosis<br/>"
-        f"<b>Report date:</b> {date.today().isoformat()} &nbsp;|&nbsp; <b>Version:</b> 3 (chart QA rebuild)<br/>"
+        f"<b>Report date:</b> {date.today().isoformat()} &nbsp;|&nbsp; <b>Version:</b> 4 (aspect-ratio fix)<br/>"
         f"<b>Scope:</b> Genetics, phenotype, prevalence, care pathways, age-staged watch signs<br/>"
         f"<b>Fidelity:</b> v1 mean {fidelity_v1['mean']:.1f}/10 → v3 mean {fidelity_v3['mean']:.1f}/10 "
         f"(all metrics 10/10 after visual + evidence fixes)",
